@@ -1,0 +1,23 @@
+{% extends 'main/main.html' %} {% load static %} {% block content %}
+<div class="background-1"></div>
+<div class="container client-table">
+<table class="table table-dark table-striped table-hover ">
+    <tr>
+        <th>IP address</th>
+        <th>Port</th>
+        <th>Connect</th>
+    </tr>
+    {% for ip in ips %}
+    <tr>
+        <td>{{ ip.data }}</td>
+        <td>{{ ip.port }}</td>
+        <td>
+            <a href="{% url 'hook' slug=ip.uuid %}">
+              <button type="button" class="btn btn-outline-light">Connect</button>
+            </a>
+          </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

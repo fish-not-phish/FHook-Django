@@ -1,0 +1,11 @@
+{% extends 'main/main.html' %} {% load static %} {% block content %}
+<div class="background-2"></div>
+<div class="container client-table">
+  <h3>FHook</h3>
+  <small>A Command and Control server which allows an individual to accept connections from multiple remote clients via a remote access tool/application.</small>
+
+  <h4>Server Status: <strong> {{ running }} </strong></h4>
+
+  <h4>Current Clients: <strong> {{ count }} </strong></h4>
+</div>
+{% endblock %}

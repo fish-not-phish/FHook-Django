@@ -1,0 +1,106 @@
+{% extends 'main/main.html' %} {% load static %} {% block content %}
+<div class="background-3"></div>
+<div class="container client-table">
+    <h2>Commands</h2>
+    <table class="table table-dark table-striped table-hover ">
+        <tr>
+            <th>Command</th>
+            <th>Argument</th>
+            <th>Description</th>
+        </tr>
+       
+        <tr>
+            <td>info</td>
+            <td></td>
+            <td>This will return detailed information about the host machines network, physical drives, processor, graphics chip and more.</td>
+        </tr>
+        <tr>
+            <td>check</td>
+            <td></td>
+            <td>This will return the current permissions.</td>
+        </tr>
+        <tr>
+            <td>where</td>
+            <td></td>
+            <td>This will return the current working directory.</td>
+        </tr>
+        <tr>
+            <td>cd</td>
+            <td>&lt;target_path&gt;</td>
+            <td>This will return the change the current working directory to the given target path.</td>
+        </tr>
+        <tr>
+            <td>ls</td>
+            <td></td>
+            <td>This will list out all directories and files in the current working directory. It will also display hidden files.</td>
+        </tr>
+        <tr>
+            <td>cat</td>
+            <td>&lt;target_file&gt;</td>
+            <td>This will read out the content of the target file via standard output.</td>
+        </tr>
+        <tr>
+            <td>rm</td>
+            <td>&lt;target_file&gt;</td>
+            <td>This will delete the target file.</td>
+        </tr>
+        <tr>
+            <td>cp</td>
+            <td>&lt;source_file&gt; &lt;destination_path+destination_filename&gt;</td>
+            <td>This will copy the target file to the desired location. You must include the file name of the destination file.</td>
+        </tr>
+        <tr>
+            <td>mkdir</td>
+            <td>&lt;directory_name&gt;</td>
+            <td>This will create a new directory within the current working directory.</td>
+        </tr>
+        <tr>
+            <td>removedir</td>
+            <td>&lt;target_directory&gt;</td>
+            <td>This will recursively delete the target directory.</td>
+        </tr>
+        <tr>
+            <td>ps</td>
+            <td></td>
+            <td>This will list out all active processes.</td>
+        </tr>
+        <tr>
+            <td>get</td>
+            <td>&lt;target_file&gt;</td>
+            <td>This will download the target file in the given current working directory.</td>
+        </tr>
+        <tr>
+            <td>arp</td>
+            <td></td>
+            <td>This will return ARP tables.</td>
+        </tr>
+        <tr>
+            <td>nestat</td>
+            <td></td>
+            <td>This will return all listening/open ports. No duplication.</td>
+        </tr>
+        <tr>
+            <td>allWindows</td>
+            <td></td>
+            <td>This will return the processes that currently have an active open window.</td>
+        </tr>  
+    </table>
+
+
+
+    <h2>What is a C2?</h2>
+    <p>A C2 (Command and Control) framework is a software tool or platform designed to enable remote control and management of compromised systems or networks. It provides a means for attackers to communicate with and control compromised machines, typically for malicious purposes.</p>
+
+    <p>C2 frameworks are often used by cybercriminals, hackers, or advanced persistent threat (APT) groups to maintain persistence, conduct reconnaissance, execute commands, and exfiltrate data from compromised systems. These frameworks typically consist of two main components: a client and a server.</p>
+        
+    <p>The client component, also known as an agent or implant, is typically installed on the compromised system or device. It acts as a backdoor, allowing the attacker to maintain control over the system and execute various commands remotely. The client is designed to be lightweight, stealthy, and capable of evading detection by security tools.</p>
+        
+    <p>The server component, also referred to as the C2 server or command center, is where the attacker manages the compromised systems. It receives communications and commands from the client agents, and it provides a control interface for the attacker to interact with the compromised systems. The server component is often hosted on a remote server or infrastructure controlled by the attacker.</p>
+        
+    <p>The communication between the client and server components of a C2 framework is typically conducted over various channels, such as HTTP(S), DNS, or other covert channels, to avoid detection by network security solutions. Encryption and obfuscation techniques may also be employed to make the communication traffic harder to analyze.</p>
+        
+    <p>C2 frameworks are designed to provide flexibility and scalability to attackers, allowing them to control multiple compromised systems simultaneously, issue commands, gather information, and coordinate attacks. These frameworks often have features such as file transfer capabilities, keylogging, screen capture, and the ability to execute arbitrary code on compromised systems.</p>
+        
+    <p>It's important to note that C2 frameworks are primarily used by malicious actors and are illegal to use without proper authorization. Cybersecurity professionals and researchers may also use similar frameworks for defensive purposes, such as analyzing and understanding the techniques used by attackers to develop effective countermeasures.</p>
+</div>
+{% endblock %}

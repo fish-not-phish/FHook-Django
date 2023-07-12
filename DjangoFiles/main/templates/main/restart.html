@@ -1,0 +1,12 @@
+{% extends 'main/main.html' %} {% load static %} {% block content %}
+<div class="background-2"></div>
+<div class="container client-table">
+<form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <p>Click the below button to restart the command and control server. This will erase the database.</p>
+      </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}
