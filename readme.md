@@ -7,7 +7,9 @@ It has been built on top of Django, which is a fullstack web framework powered b
 ## Web Server Benefits
 - Restart the server by clicking 1 button.
 - Manage all file uploads and downloads.
+![uploads](https://github.com/fish-not-phish/FHook-Django/assets/69283986/6468430c-a1bc-4ece-b81e-6baa40d33ecc)
 - Account Management.
+![acc_management](https://github.com/fish-not-phish/FHook-Django/assets/69283986/986d3e56-fd16-404f-8806-aa4afc26b990)
 - Easily share one server amongst multiple individuals.
 
 ## C2 Features
@@ -38,7 +40,12 @@ It has been built on top of Django, which is a fullstack web framework powered b
 - Allows the user to run PowerShell commands on demand in bypass policy.
   - Is a new instance of PowerShell for each command. The instance is NOT persistent.
   - May experience some issues with quotations and chained commands.
-
+### Command Line GUI
+![cli](https://github.com/fish-not-phish/FHook-Django/assets/69283986/58ec45e1-2f74-4472-93f2-969069b5c52d)
+## Commands
+![commands](https://github.com/fish-not-phish/FHook-Django/assets/69283986/91daf42f-61d7-412d-8d5c-9aeda64ac83e)
+### Hook Selection
+![hooks](https://github.com/fish-not-phish/FHook-Django/assets/69283986/b76ac081-5bd9-4de3-86dc-6ff1fe82ec57)
 ## Loader
 The client payload is ran from a loader. The loader is responsible for decrypting and decoding the payload and then running the client payload in memory. This lowers the chances that the client payload will be detected.
 
