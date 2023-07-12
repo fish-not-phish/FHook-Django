@@ -227,9 +227,7 @@ class Command(BaseCommand):
         context.load_cert_chain(certfile='cert.pem', keyfile='key.pem')
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        hostname = socket.gethostname()
-        IP_ADDRESS = str(socket.gethostbyname(hostname))
-        print(IP_ADDRESS)
+        IP_ADDRESS = "SERVER_IP"
         PORT = 5555
         sock.bind((IP_ADDRESS, PORT))
         sock.listen(5)
