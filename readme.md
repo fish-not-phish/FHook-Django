@@ -240,8 +240,20 @@ In the web GUI, go to "Restart" in the navigation bar and click it. Then click S
 ### Hard Restart
 If there are any unsolved errors, you can manually restart the server by closing the "run_server" instance, and opening a new terminal/powershell instance to run the same command again. You will need to do this everytime to perform a hard restart.
 
+## How to Upload Files
+In order to upload files to a client, you must first upload the file to Django. Go to the "Uploads" tab on the navigations bar and click it.
+
+Once that loads, click "Choose File" and choose a file you would like to upload. Click "Upload" after that to initiate the upload.
+
+Once the file is uploaded, you may go back to your hook (client connection) and type:
+```
+put <file_name_of_file_you_just_uploaded.extension>
+```
+
 ## Troubleshooting
 In the unfortunate circumstance where you cannot kill the script from running, feel free to run the below python script.
+
+Please change "python.exe" to "python" if you are on Linux.
 ```
 for proc in psutil.process_iter(['pid', 'name', 'cmdline']):
     if proc.info['name'] in ['python.exe', 'python3', 'python']:
